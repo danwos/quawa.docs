@@ -1,0 +1,34 @@
+# Requirements
+
+What the tool is meant to do is written down, covered and traced to tests.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+Feature descriptions exist for the main features.
+
+## Level 2 – Shaped
+
+Every user-visible feature described (≥ 80 %).
+
+## Level 3 – Solid
+
+Traceability feature → passing test (≥ 80 %).
+
+## Level 4 – Refined
+
+Acceptance criteria per feature, all verified; decisions logged.
+
+## Level 5 – Audited
+
+Requirements reviewed and approved (100 %), change impact visible.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- deciwa / Sphinx-Needs: feature descriptions, their coverage, links feature → test, approvals

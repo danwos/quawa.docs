@@ -1,0 +1,37 @@
+# Open topics
+
+Points to settle in the first implementation concept – none of them is a
+decision yet.
+
+## Workflow
+
+- **Targets are decisions.** Raising a target should be logged with date
+  and reason, later as a deciwa decision.
+- **Gap list as work queue.** The measures between reached and target are
+  the natural to-do list for agents ("bring the overlay to level 3").
+- **Gaming by agents.** Agents working towards green write tests that test
+  nothing or docs that only exist; mutation testing and AI-rated checks are
+  in the model from the start so the trick becomes visible.
+- **Snapshot per release or customer.** A maturity profile can be part of an
+  agreement ("you get 2, security 4"); the snapshot per release is the evidence.
+- **Model upgrades.** A new model version makes levels drop without the code
+  changing; projects pin a version and upgrade on purpose, quawa shows "with
+  the next model version you would be at 2".
+
+## Technology
+
+- **Scope mapping.** Modules and features need code, tests and docs assigned
+  to them: paths first, feature ↔ test links from deciwa.
+- **Adapters.** One result schema, many inputs: JUnit XML, lcov, cobertura,
+  SARIF, CycloneDX, deciwa.
+- **Cost and cadence.** Linting runs on save, E2E and mutation tests take
+  minutes to hours; every check has a cadence and a maximum age.
+- **Flaky checks.** A check that changes state without a code change must be
+  recognisable, or every regression alarm loses its worth.
+- **Runs locally.** The runner works as a CLI without CI; CI and apps only call it.
+- **Where results live.** Configuration in the repository; results as
+  history outside Git or as a snapshot per release.
+
+## First projects
+
+deciwa first – it is public – then quawa itself and monsterbrain.

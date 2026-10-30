@@ -1,0 +1,73 @@
+# The maturity model
+
+Software built with AI grows roughly across the whole first and gets finer
+round by round. quawa makes visible how far it is: a **maturity level** per
+quality area, measured now, aimed for now, and aimed for at full build-out.
+
+- Quality is measured **always and completely**, also on levels nobody asks
+  for yet. Red at the start is normal; what counts is the distance to the
+  current target and the progress over time.
+- A result below target is a **gap**, not a failure. Nothing breaks a build
+  by default; blocking is an explicit opt-in per check.
+- The **danwos model** fixes what is measured on which level, so the levels
+  of two tools mean the same ({need}`DEC_DANWOS_MODEL`). A project only says
+  where its results come from.
+
+## Levels
+
+The names describe a state, not an activity – every area fills a level with
+its own measures ({need}`DEC_LEVEL_NAMES`).
+
+| Level | Name | State |
+|---|---|---|
+| 0 | Vibe code | whatever exists – asks for nothing, no ring |
+| 1 | Sketched | it is there in rough form; you can see what it will be |
+| 2 | Shaped | the form stands and holds; the basics are in place and kept |
+| 3 | Solid | it carries load; the whole works together, ready for real users |
+| 4 | Refined | worked through in detail, the hard parts too |
+| 5 | Audited | confirmed from outside: users, auditors, lawyers |
+
+## Areas
+
+Eight areas, each with its own page: the measures per level, their
+thresholds and the possible checks. The pages grow with the model.
+
+```{toctree}
+:maxdepth: 1
+
+areas/requirements
+areas/documentation
+areas/testing
+areas/code-health
+areas/security
+areas/legal
+areas/product-ux
+areas/build-release
+```
+
+## How it works
+
+```{toctree}
+:maxdepth: 1
+
+scoring
+display
+configuration
+```
+
+## Terms
+
+| Term | Meaning | Example |
+|---|---|---|
+| **Model** | the set of levels, areas, measures and thresholds; versioned | the danwos model |
+| **Level** | a step on the scale 0…5 | 2 = Shaped |
+| **Area** | a quality characteristic; each has its own level | testing, legal |
+| **Measure** | something that has to exist or hold – the *what* | "unit tests pass" |
+| **Check** | an executable measurement for a measure – the *how*; technology-specific | `vitest` + coverage report |
+| **Metric** | the normalized value a check delivers | line coverage 63 % |
+| **Threshold** | the rule that rates a metric on a level | coverage ≥ 60 % on level 3 |
+| **Scope** | what is rated: project → module → feature | project deciwa, module "overlay" |
+
+The model is versioned and grows: new measures, other thresholds or areas
+come as a new version of the model; projects upgrade on purpose
+({need}`DEC_MODEL_VERSIONED`).

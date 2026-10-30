@@ -1,0 +1,39 @@
+# Product & UX
+
+The tool follows the danwos tool rules and branding and is usable by everyone.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+Danwos tool rules: version number, help dialog, start page, shortcuts.
+
+## Level 2 – Shaped
+
+Branding defined and checked.
+
+## Level 3 – Solid
+
+Accessibility: automatic WCAG checks without errors; translations complete.
+
+## Level 4 – Refined
+
+AI-rated UX and brand feel ≥ 70 per screen; manual a11y check.
+
+## Level 5 – Audited
+
+User test with real users, findings handled.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- own checks for the danwos tool rules (version number, help dialog, start page, shortcuts)
+- branding: tokens and logo in use
+- accessibility: axe in the E2E run
+- translations complete (no empty entries)
+- AI rating of screens: UX and brand feel
+- user test evidence

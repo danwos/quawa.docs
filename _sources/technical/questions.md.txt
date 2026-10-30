@@ -1,0 +1,18 @@
+# Open questions
+
+Everything that waits for a decision. An answered question becomes
+`answered`; what it decides gets a decision in
+[Decisions](../decisions/index.md).
+
+```{needtable}
+:types: question
+:columns: id, title, status, to, docname as "page"
+:sort: status
+:style: table
+```
+
+```{question} Under which licence does quawa go public one day?
+:id: Q_LICENCE
+:status: open
+:to: Daniel
+```

@@ -1,0 +1,39 @@
+# Code health
+
+The code is formatted, clean and stays maintainable.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+Formatter configured, clean.
+
+## Level 2 – Shaped
+
+Lint and type check clean.
+
+## Level 3 – Solid
+
+Complexity and duplication within limits.
+
+## Level 4 – Refined
+
+Static analysis 0 high findings, dependency rules hold.
+
+## Level 5 – Audited
+
+Every change reviewed (human or second agent).
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- formatter check: prettier, ruff format
+- lint and types: eslint + tsc, ruff + mypy
+- complexity and duplication: e.g. lizard, jscpd
+- static analysis: semgrep, CodeQL (SARIF)
+- dependency rules: dependency-cruiser, import-linter
+- review evidence per change

@@ -1,0 +1,38 @@
+# Legal
+
+Licences and data handling are known and fit the rules.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+Own licence declared (LICENSE, SPDX headers).
+
+## Level 2 – Shaped
+
+Dependency licences inventoried.
+
+## Level 3 – Solid
+
+Licence check against rules (no copyleft, no proprietary).
+
+## Level 4 – Refined
+
+SBOM and third-party notices per release; data inventory with GDPR notes.
+
+## Level 5 – Audited
+
+Legal review with evidence.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- own licence: LICENSE file, SPDX headers (e.g. reuse lint)
+- dependency licences: license-checker, pip-licenses
+- SBOM: syft, CycloneDX
+- data inventory and GDPR notes as documents
+- legal review evidence

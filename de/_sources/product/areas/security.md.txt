@@ -1,0 +1,38 @@
+# Security
+
+No secrets, no known holes, and security is designed, not hoped for.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+No secrets in the repo.
+
+## Level 2 – Shaped
+
+No known high/critical vulnerabilities in dependencies.
+
+## Level 3 – Solid
+
+SAST security rules 0 high.
+
+## Level 4 – Refined
+
+Threat model exists and is current; security update process.
+
+## Level 5 – Audited
+
+External pen test or audit.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- secrets: gitleaks, trufflehog
+- vulnerable dependencies: osv-scanner, npm audit, pip-audit
+- SAST security rules: semgrep, CodeQL
+- threat model as a document (existence, then review)
+- pen test or audit evidence

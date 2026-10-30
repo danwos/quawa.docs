@@ -1,0 +1,39 @@
+# Build & release
+
+It builds from scratch, releases are reproducible and trustworthy.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+Builds from a clean checkout with the README steps.
+
+## Level 2 – Shaped
+
+Version number and changelog; all checks run with one command (`quawa run`).
+
+## Level 3 – Solid
+
+Release build automated, artefacts per platform.
+
+## Level 4 – Refined
+
+Signed, reproducible builds; update path tested.
+
+## Level 5 – Audited
+
+Crash/error reporting, rollback, support process.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- clean build in a fresh container with the README steps
+- version number and changelog check
+- `quawa run`: all checks with one command
+- release build script or CI with artefacts per platform
+- signature and reproducibility check
+- crash/error reporting and rollback evidence

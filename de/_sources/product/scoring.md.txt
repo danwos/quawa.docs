@@ -1,0 +1,57 @@
+# Scoring
+
+## Levels build on each other
+
+Every level **adds** measures to those below ({need}`DEC_INCREMENTAL_LEVELS`).
+A stricter threshold on a higher level is a new measure there – coverage
+≥ 30 % on level 2, ≥ 60 % on level 3 and ≥ 80 % on level 4 are three
+measures fed by the same check.
+
+## From check to area
+
+- **Check score 0–100:** binary checks give 0 or 100. Numeric checks give
+  100 when the threshold is met, below that linear towards 0
+  (`value / threshold` for "higher is better", `threshold / value` for
+  "lower is better", e.g. findings). Existence checks are binary.
+- **Measure score** = mean of its checks.
+- **Area score on a level** = mean of the measures this level adds. A
+  measure without a result (not defined, no result, broken) counts 0. Only
+  when none of them has a result the segment shows a grey or hatched state
+  instead – broken before defined before not defined.
+- Weights per measure are possible later; the first version uses the plain mean.
+
+## Reached
+
+- A level is **reached** in an area when it and every level below score 100.
+- The **reached level of an area** is the highest such level. A level above
+  a hole can pass on its own (mutation tests on level 4 run while level 2
+  fails); it is shown, but not reached.
+- Areas are independent of each other; inside an area it is a strict ladder
+  ({need}`DEC_STRICT_LADDER`).
+- **Project level per area** = lowest level of its modules (weakest link);
+  **overall project level** = lowest area level ({need}`DEC_WEAKEST_LINK`).
+
+## Check types
+
+| Type | Example | Result |
+|---|---|---|
+| automatic, numeric | coverage, mutation score | value + threshold |
+| automatic, binary | licence rule, secrets, build starts | pass / fail + findings |
+| existence | user docs exist, threat model exists | pass / fail; says nothing about quality |
+| AI-rated | "user docs cover every feature", brand feel of a screen | score + reasoning + model; marked as AI rating |
+| human review | pen test, legal approval | evidence document + person + date |
+
+Existence checks are the honest start; AI-rated and review checks deepen the
+same measure later.
+
+## Result states
+
+| State | Meaning | In the rings |
+|---|---|---|
+| pass | threshold met | part of the score; 100 on every measure = reached |
+| below threshold | not met | score colour |
+| no result | check defined, has not run, or its result is older than allowed | dark grey |
+| not defined | the model asks for the measure, the project maps no check | light grey, dashed |
+| broken | the check could not run: tool missing, crash, unreadable report | red hatched |
+| waived | deviation accepted with reason and end date | counts as 100; the detail shows "waived until" |
+| regression | was met in an earlier run, is no longer | highlighted – the only real alarm |

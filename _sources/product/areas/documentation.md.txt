@@ -1,0 +1,37 @@
+# Documentation
+
+Users and developers find what they need, and the docs say what the tool really does.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+User docs (README with start steps).
+
+## Level 2 – Shaped
+
+Developer docs (setup, structure); docs build without warnings.
+
+## Level 3 – Solid
+
+Docs cover every feature (AI-rated ≥ 70).
+
+## Level 4 – Refined
+
+Architecture and decisions documented; API reference generated.
+
+## Level 5 – Audited
+
+Docs tested with users; code examples executed.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- existence checks for user and developer docs
+- docs build with warnings as errors (e.g. `sphinx-build -W`)
+- AI rating: do the docs cover every feature
+- executed code examples (doctest)

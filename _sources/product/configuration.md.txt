@@ -1,0 +1,98 @@
+# Configuration
+
+The model fixes *what* is measured on which level. To draw the rings it
+needs a few things from every project. This page lists those requirements;
+the exact format, the runner and the check adapters are decided in the
+first implementation concept.
+
+## What the model needs from a project
+
+| Information | Per | Why |
+|---|---|---|
+| model version (danwos model or own model) | project | which measures and thresholds apply; danwos or standard colours |
+| levels aimed for and **from when** (active, date, release) | project, optionally per area | current and final target, scheduled rings, not targeted levels |
+| for every measure of every level: the check that feeds it | area → level → measure | segment colour; a measure without a check is "not defined" |
+| how the check runs and where its result comes from (command, report file, other tool) | check | no result vs. score vs. broken |
+| how often it runs and how old a result may be | check | stale results count as "no result" |
+| own extra measures with their level | area → level | allowed, keeps the danwos colours |
+| stricter thresholds | measure | allowed, keeps the danwos colours |
+| waivers with reason and end date | measure | counted as reached until the end date |
+| scopes (modules) with their paths | project | rings per module; project level = weakest module (later) |
+
+## Scheduling
+
+- Current target = highest level in force today; final target = highest
+  level listed; levels not listed are not targeted.
+- A level switches on by date or by release; the current version comes from
+  the latest git tag ({need}`DEC_SCHEDULED_LEVELS`). quawa notes the switch
+  in the history.
+- An area may be scheduled ahead of the project (security on level 3 earlier).
+
+## Sketch: `.quawa/`
+
+The configuration is a directory with one file per area; inside an area
+file the **levels are the structure**, so you see which check has to run
+from which level on ({need}`DEC_CONFIG_DIRECTORY`). The sketch shows the
+shape, not the final format.
+
+```
+.quawa/
+  project.yaml        model, levels with dates, scopes
+  requirements.yaml
+  documentation.yaml
+  testing.yaml
+  code-health.yaml
+  security.yaml
+  legal.yaml
+  product-ux.yaml
+  build-release.yaml
+```
+
+```yaml
+# .quawa/project.yaml
+model: 1                     # version of the danwos model
+levels:                      # missing level = not targeted
+  1: active
+  2: active
+  3: { from: 2027-03-01 }
+  4: { from: release 1.0 }   # version from the latest git tag
+```
+
+```yaml
+# .quawa/testing.yaml – level by level, how this project delivers each measure
+1:                           # Sketched
+  smoke:       { run: "npm run smoke" }
+2:                           # Shaped
+  unit:        { run: "npx vitest run", report: reports/junit.xml }
+  coverage-30: { from-check: unit, report: coverage/lcov.info }
+3:                           # Solid – not defined yet, shown dashed
+4:                           # Refined
+  mutation-60: { run: "quawa mutate", report: reports/mutation.json }
+  flake-rate:  { from-history: unit }
+  coverage-80: { from-check: unit }
+```
+
+In the code every measure probably gets its own definition file that
+collects the possible checks; which of them a project uses – the mapping –
+is documented.
+
+## When a configuration keeps the danwos colours
+
+| Keeps the danwos colours | Loses them (standard colours) |
+|---|---|
+| measures mapped to any check technology | a measure of the model removed |
+| measures not mapped yet (shown dashed) | a measure moved to a later level |
+| own extra measures | a threshold weaker than the model |
+| stricter thresholds | own levels or own areas (own model) |
+| fewer levels targeted, levels scheduled | waivers without an end date |
+| waivers with reason and end date | |
+
+quawa checks this when it reads `.quawa/` and says why a picture lost the
+danwos colours.
+
+## Results
+
+A run writes one normalized result per check and scope: value, state,
+thresholds, commit, tool version, time, link to the raw output. The history
+is the sequence of these results – it gives progress, regression and flake
+rate.

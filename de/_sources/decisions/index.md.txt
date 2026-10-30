@@ -1,0 +1,150 @@
+# All decisions
+
+Product and technical decisions on quawa. All decided by Daniel; they are
+binding requirements for every feature and every piece of code. Business
+decisions (licence, market, pricing) are kept outside this repository.
+
+```{needtable}
+:types: dec
+:columns: id, title, decided
+:sort: decided
+:style: table
+```
+
+## Product
+
+```{dec} quawa defines and measures the quality maturity of a project
+:id: DEC_MATURITY_TOOL
+:status: approved
+:decided: 2026-10-29
+:reason: Quality has to be visible from the first vibe-coded sketch on; checking whether tests really test (mutation testing) becomes one measure of the model instead of the whole product.
+:alternatives: quawa as a mutation testing tool for pull requests only.
+```
+
+```{dec} quawa measures always and completely; a gap is information, not a broken build
+:id: DEC_MEASURE_ALWAYS
+:status: approved
+:decided: 2026-10-22
+:reason: Red at the start is normal; what counts is the distance to the current target and the progress over time.
+:alternatives: measure only what the current level asks for; fail the build below target.
+```
+
+```{dec} One scale for all areas; the project level per area is the lowest level of its modules
+:id: DEC_WEAKEST_LINK
+:status: approved
+:decided: 2026-10-22
+:reason: Every area uses the same levels of the model; a project is only as mature as its weakest module.
+```
+
+```{dec} The fixed danwos model decides what is measured on which level; a project only maps where results come from
+:id: DEC_DANWOS_MODEL
+:status: approved
+:decided: 2026-10-29
+:reason: Free models are not comparable between tools; the danwos model (eight areas, levels 1–5) is fixed by danwos.
+```
+
+```{dec} The model is versioned and stays adaptable and extendable
+:id: DEC_MODEL_VERSIONED
+:status: approved
+:decided: 2026-10-29
+:reason: New measures, other thresholds or areas come as a new version; projects upgrade on purpose.
+```
+
+```{dec} Level names: Vibe code · Sketched · Shaped · Solid · Refined · Audited
+:id: DEC_LEVEL_NAMES
+:status: approved
+:decided: 2026-10-29
+:reason: The names describe a state, not an activity; every area fills a level with its own measures.
+:alternatives: Described / Tested and documented / Integrated and clean / Proven; Known / Checked / Assured / Proven.
+```
+
+```{dec} Levels build on each other: each level adds measures
+:id: DEC_INCREMENTAL_LEVELS
+:status: approved
+:decided: 2026-10-29
+:reason: A higher level is the results of the lower levels plus additional measures.
+```
+
+```{dec} Inside an area the levels are a strict ladder; areas are independent of each other
+:id: DEC_STRICT_LADDER
+:status: approved
+:decided: 2026-10-29
+:reason: A level counts as reached only when all levels below are reached; legal may be at 3 while documentation is at 1.
+```
+
+```{dec} The display is score rings around the tool's logo: one ring per level, one segment per area, score 0–100 from red to green
+:id: DEC_RINGS
+:status: approved
+:decided: 2026-10-29
+:reason: Like the pull request roll on danwos.dev – the state is felt at a glance instead of read.
+```
+
+```{dec} Reached levels of an area merge into one block with a thick frame; above it each level shows its own state
+:id: DEC_REACHED_BLOCK
+:status: approved
+:decided: 2026-10-29
+:reason: Shows the reached level and what is going on on top; open or broken measures count 0 instead of separate markers.
+:alternatives: separate segments per level with markers for open and broken measures.
+```
+
+```{dec} Grey states: not defined = light grey dashed, defined without result = dark grey solid, broken = red hatched
+:id: DEC_GREY_STATES
+:status: approved
+:decided: 2026-10-29
+:reason: What has been thought of but not measured yet must be visible apart from bad results.
+```
+
+```{dec} A configuration that follows the danwos model is shown in danwos colours, a deviating one in standard red–green – for the whole picture
+:id: DEC_COLOUR_SEAL
+:status: approved
+:decided: 2026-10-29
+:reason: The colours show that the levels were reached under the same rules.
+:alternatives: switch colours per ring.
+```
+
+```{dec} Slim variant "target" hides everything above the current target, also broken measurements
+:id: DEC_TARGET_VARIANT
+:status: approved
+:decided: 2026-10-29
+:reason: It shows only what is owed today; above the target nothing belongs to it.
+```
+
+```{dec} Levels can be scheduled by date or release; the version comes from the latest git tag
+:id: DEC_SCHEDULED_LEVELS
+:status: approved
+:decided: 2026-10-29
+:reason: The configuration shows where the project wants to go and when, not only where it stands.
+:alternatives: version from the package file.
+```
+
+```{dec} The configuration is a directory .quawa/ with one file per area, ordered by level
+:id: DEC_CONFIG_DIRECTORY
+:status: approved
+:decided: 2026-10-29
+:reason: The configuration grows with every measure; ordered by level it shows which check has to run from which level on.
+:alternatives: one .quawa file.
+```
+
+## Repository
+
+```{dec} Product docs live in this repository as Sphinx docs with Sphinx-Needs
+:id: DEC_DOCS_IN_REPO
+:status: approved
+:decided: 2026-10-29
+:reason: Same setup as deciwa and monsterbrain; the docs are the requirements for the code.
+```
+
+```{dec} The code stays private for now; the docs are public
+:id: DEC_CODE_PRIVATE
+:status: approved
+:decided: 2026-10-29
+:reason: quawa is at the concept stage; the docs can be shown and discussed without opening the code, as with monsterbrain. The code may go open source later.
+:alternatives: repository and docs both private until the code goes public.
+```
+
+```{dec} The repository starts with a fresh history; nothing of the former internal filing is in it
+:id: DEC_FRESH_HISTORY
+:status: approved
+:decided: 2026-10-29
+:reason: quawa may become open source one day; the history must not contain internal business, legal or measurement material.
+```

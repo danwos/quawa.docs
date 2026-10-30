@@ -1,0 +1,44 @@
+# Testing
+
+```{image} ../../_static/img/scenes/quawa-bowling.webp
+:class: dw-scene wide
+:alt: The quawa monster rolls into a row of test pins; the solid ones stand, the hollow one falls
+```
+
+The tests run, cover the code and really test it.
+
+Each level adds measures; a level is reached when its measures and all
+measures below meet their thresholds. Measures and levels are fixed by the
+danwos model ({need}`DEC_DANWOS_MODEL`); a project only says where the
+results come from.
+
+## Level 1 – Sketched
+
+Smoke test: starts, `--help` runs.
+
+## Level 2 – Shaped
+
+Unit tests pass, coverage ≥ 30 %.
+
+## Level 3 – Solid
+
+Integration and E2E tests pass, coverage ≥ 60 %.
+
+## Level 4 – Refined
+
+Mutation score ≥ 60 % (quawa), coverage ≥ 80 %, flake rate < 2 %.
+
+## Level 5 – Audited
+
+System tests on all target platforms, performance baseline (no regression > 10 %), mutation ≥ 80 %.
+
+## Possible checks
+
+Examples – which check feeds which measure is the project's choice.
+
+- smoke script: start, `--help`
+- unit tests with coverage: vitest, pytest (JUnit, lcov, cobertura)
+- integration and E2E: Playwright, pytest
+- mutation testing: Stryker, mutmut – called by quawa
+- flake rate from the result history
+- benchmark runs with a baseline
